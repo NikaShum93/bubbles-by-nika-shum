@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Мозг пузыри by Nika Shum</title>
+</head>
+<body>
+<script>
+const totalBubbles = 2;
+let poppedCount = 0;
+window.addEventListener('message', (e) => {
+  if (e.data.type === 'bubblePopped') {
+    const id = e.data.id;
+    window.parent.postMessage({type:'showMessage', id}, '*');
+    poppedCount++;
+    if (poppedCount === totalBubbles) {
+      window.parent.postMessage({type:'showGlobalOn'}, '*');
+    }
+  }
+});
+</script>
+</body>
+</html>
