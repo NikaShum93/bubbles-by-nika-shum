@@ -1,18 +1,35 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Сообщение 2</title>
-  <style>body{margin:0;overflow:hidden;background:transparent;} #msg{display:none;background:rgba(46,204,113,0.8);color:white;padding:10px;border-radius:8px;font-family:sans-serif;} </style>
+  <style>
+    html, body {
+      margin: 0;
+      overflow: hidden;
+      background-color: rgba(46,204,113,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+    }
+    #icon { display: none; }
+  </style>
 </head>
 <body>
-<div id="msg">Задание 2: ...</div>
-<script>
-window.addEventListener('message', (e) => {
-  if (e.data.type === 'showMessage' && e.data.id === '2') {
-    document.getElementById('msg').style.display='block';
-  }
-});
-</script>
+  <div id="icon">📜</div>
+  <script>
+    const icon = document.getElementById('icon');
+    // прятать фон и иконку в режиме показа
+    if (document.referrer.includes('view.genially.com')) {
+      document.body.style.backgroundColor = 'transparent';
+      icon.style.display = 'none';
+    }
+    window.addEventListener('message', e => {
+      if (e.data.type === 'showMessage' && e.data.id === '2') {
+        icon.style.display = 'block';
+      }
+    });
+  </script>
 </body>
 </html>
