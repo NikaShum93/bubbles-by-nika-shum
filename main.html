@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>🧠 Пузырьки by Nika Shum</title>
+  <title>🧠 Пузырьки by Nika Shum</title>
   <style>
     html, body {
       margin: 0;
@@ -16,16 +16,20 @@
     #label {
       color: #333;
       font-size: 20px;
-      padding: 0 10px;
       pointer-events: none;
     }
   </style>
 </head>
 <body>
-  <div id="label">🧠 Пузырьки by Nika Shum</div>
-
+  <div id="label">🧠 Пузырьки by Nika Shum</div>
   <script>
-    // пока уберём логику скрытия — просто выводим текст
+    // прячем плашку в превью/показе Genially
+    const ref = document.referrer;
+    if (ref.includes('view.genially.com')) {
+      document.body.style.backgroundColor = 'transparent';
+      document.getElementById('label').style.display = 'none';
+    }
+    // остальной код «мозга»
     const totalBubbles = 2;
     let poppedCount = 0;
     window.addEventListener('message', e => {
@@ -39,4 +43,3 @@
   </script>
 </body>
 </html>
-
