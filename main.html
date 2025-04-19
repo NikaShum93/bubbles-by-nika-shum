@@ -2,22 +2,38 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>Мозг пузыри by Nika Shum</title>
+  <title>🧠 Пузырьки by Nika Shum</title>
+  <style>
+    html, body {
+      margin: 0;
+      overflow: hidden;
+      /* жёлтая полупрозрачная заливка по умолчанию */
+      background-color: rgba(241,196,15,0.3);
+    }
+  </style>
 </head>
 <body>
 <script>
-const totalBubbles = 2;
-let poppedCount = 0;
-window.addEventListener('message', (e) => {
-  if (e.data.type === 'bubblePopped') {
-    const id = e.data.id;
-    window.parent.postMessage({type:'showMessage', id}, '*');
-    poppedCount++;
-    if (poppedCount === totalBubbles) {
-      window.parent.postMessage({type:'showGlobalOn'}, '*');
-    }
+  // Если не в режиме редактирования Genially — делаем фон прозрачным
+  if (!document.referrer.includes('/edit')) {
+    document.body.style.backgroundColor = 'transparent';
   }
-});
+
+  const totalBubbles = 2;  // замените на фактическое число пузырьков
+  let poppedCount = 0;
+
+  window.addEventListener('message', (e) => {
+    if (e.data.type === 'bubblePopped') {
+      const id = e.data.id;
+      // показать нужное сообщение
+      window.parent.postMessage({ type: 'showMessage', id }, '*');
+      poppedCount++;
+      // когда все лопнут — переключить фидбек
+      if (poppedCount === totalBubbles) {
+        window.parent.postMessage({ type: 'showGlobalOn' }, '*');
+      }
+    }
+  });
 </script>
 </body>
 </html>
