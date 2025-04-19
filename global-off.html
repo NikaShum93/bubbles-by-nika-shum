@@ -1,7 +1,28 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head><meta charset="UTF-8"><title>Global OFF</title></head>
-<body style="margin:0;overflow:hidden;background:rgba(231,76,60,0.8);display:flex;align-items:center;justify-content:center;font-size:24px;color:white;">
-❌
+<head>
+  <meta charset="UTF-8" />
+  <title>Global OFF</title>
+  <style>
+    html, body {
+      margin: 0;
+      overflow: hidden;
+      background-color: rgba(231,76,60,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+    }
+  </style>
+</head>
+<body>
+  ❌
+  <script>
+    // в режиме показа убрать фон и иконку
+    if (document.referrer.includes('view.genially.com')) {
+      document.body.style.backgroundColor = 'transparent';
+      document.body.textContent = '';
+    }
+  </script>
 </body>
 </html>
