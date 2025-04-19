@@ -2,38 +2,37 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>🧠 Пузырьки by Nika Shum</title>
+  <title>🧠 Пузырьки by Nika Shum</title>
   <style>
     html, body {
-      margin: 0;
-      overflow: hidden;
-      /* жёлтая полупрозрачная заливка по умолчанию */
+      margin: 0; overflow: hidden;
       background-color: rgba(241,196,15,0.3);
+      display: flex; align-items: center; justify-content: center;
+      font-family: Arial, sans-serif;
+    }
+    #label {
+      color: #333; font-size: 16px;
+      pointer-events: none;
     }
   </style>
 </head>
 <body>
-<script>
-  // Если не в режиме редактирования Genially — делаем фон прозрачным
-  if (!document.referrer.includes('/edit')) {
-    document.body.style.backgroundColor = 'transparent';
-  }
-
-  const totalBubbles = 2;  // замените на фактическое число пузырьков
-  let poppedCount = 0;
-
-  window.addEventListener('message', (e) => {
-    if (e.data.type === 'bubblePopped') {
-      const id = e.data.id;
-      // показать нужное сообщение
-      window.parent.postMessage({ type: 'showMessage', id }, '*');
-      poppedCount++;
-      // когда все лопнут — переключить фидбек
-      if (poppedCount === totalBubbles) {
-        window.parent.postMessage({ type: 'showGlobalOn' }, '*');
-      }
+  <div id="label">bubbles-by-nika-shum</div>
+  <script>
+    // скрыть фон (и текст) в режиме демонстрации
+    if (!document.referrer.includes('/edit')) {
+      document.body.style.backgroundColor = 'transparent';
+      document.getElementById('label').style.display = 'none';
     }
-  });
-</script>
+    // остальной код «мозга»
+    const totalBubbles = 2, msgs = {};
+    let popped = 0;
+    window.addEventListener('message', e => {
+      if (e.data.type==='bubblePopped') {
+        /* ... */
+      }
+    });
+  </script>
 </body>
 </html>
+
